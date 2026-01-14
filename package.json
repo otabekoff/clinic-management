@@ -1,0 +1,43 @@
+{
+  "name": "clinic-management",
+  "version": "0.0.0",
+  "description": "Clinic Management System.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Hello, world!\"",
+    "dev": "nodemon src/app/server.js",
+    "start": "node src/app/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/otabekoff/clinic-management.git"
+  },
+  "keywords": [
+    "clinic",
+    "management"
+  ],
+  "author": "Otabek Sadiridinov <sadiridinovotabek@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/otabekoff/clinic-management/issues"
+  },
+  "homepage": "https://github.com/otabekoff/clinic-management#readme",
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.3",
+    "express": "^5.2.1",
+    "express-validator": "^7.3.1",
+    "helmet": "^8.1.0",
+    "jsonwebtoken": "^9.0.3",
+    "morgan": "^1.10.1",
+    "pg": "^8.16.3"
+  },
+  "devDependencies": {
+    "eslint": "^9.39.2",
+    "jest": "^30.2.0",
+    "nodemon": "^3.1.11",
+    "prettier": "^3.7.4",
+    "supertest": "^7.2.2"
+  }
+}
