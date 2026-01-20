@@ -1,10 +1,12 @@
-const router = require("express").Router();
-const controller = require("./appointments.controller");
-const auth = require("../auth/auth.middleware");
-const role = require("../auth/role.middleware");
+import express from "express";
+import * as controller from "./appointments.controller.js";
+import authMiddleware from "../../shared/middlewares/auth.js";
+import roleMiddleware from "../../shared/middlewares/requireRole.js";
 
-router.post("/", auth, role("patient"), controller.create);
-router.put("/:id/approve", auth, role("doctor"), controller.approve);
-router.put("/:id/cancel", auth, controller.cancel);
+const router = express.Router();
 
-module.exports = router;
+router.post("/", authMiddleware, roleMiddleware("patient"), controller.create);
+router.put("/:id/approve", authMiddleware, roleMiddleware("doctor"), controller.approve);
+router.put("/:id/cancel", authMiddleware, controller.cancel);
+
+export default router;

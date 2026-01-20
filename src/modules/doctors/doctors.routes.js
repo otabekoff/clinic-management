@@ -1,8 +1,10 @@
-const router = require("express").Router();
-const controller = require("./doctors.controller");
-const auth = require("../auth/auth.middleware");
-const role = require("../auth/role.middleware");
+import express from "express";
+import * as controller from "./doctors.controller.js";
+import authMiddleware from "../../shared/middlewares/auth.js";
+import roleMiddleware from "../../shared/middlewares/requireRole.js";
 
-router.post("/", auth, role("admin"), controller.createDoctorProfile);
+const router = express.Router();
 
-module.exports = router;
+router.post("/", authMiddleware, roleMiddleware("admin"), controller.createDoctorProfile);
+
+export default router;

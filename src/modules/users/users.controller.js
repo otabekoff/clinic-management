@@ -1,10 +1,10 @@
-const db = require("../../shared/db");
+import db from "../../shared/db/db.js";
 
-exports.getAllUsers = async (req, res, next) => {
-try {
-    const users = await db.query("SELECT id,name,email,role FROM users");
-    res.json(users.rows);
-} catch (err) {
-    next(err);
-}
+export const getAllUsers = async (req, res, next) => {
+    try {
+        const users = await db.query("SELECT id,name,email,role FROM users");
+        res.json(users.rows);
+    } catch (err) {
+        next(err);
+    }
 };

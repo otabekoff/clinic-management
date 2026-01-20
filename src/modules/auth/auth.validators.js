@@ -1,23 +1,42 @@
-exports.registerValidator = (req, res, next) => {
-const { name, email, password, role } = req.body;
+export const registerValidator = (req, res, next) => {
+    const { name, email, password, role } = req.body;
 
-if (!name || !email || !password || !role) {
-    return res.status(400).json({ message: "All fields are required" });
-}
+    // Check all fields are present
+    if (!name || !email || !password || !role) {
+        return res.status(400).json({ message: "All fields are required" });
+    }
 
-if (!["admin", "doctor", "patient"].includes(role)) {
-    return res.status(400).json({ message: "Invalid role" });
-}
+    // Validate email format
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+        return res.status(400).json({ message: "Invalid email format" });
+    }
 
-next();
+    // Validate password length
+    if (password.length < 6) {
+        return res.status(400).json({ message: "Password must be at least 6 characters" });
+    }
+
+    // Validate role
+    if (!["admin", "doctor", "patient"].includes(role)) {
+        return res.status(400).json({ message: "Invalid role" });
+    }
+
+    next();
 };
 
-exports.loginValidator = (req, res, next) => {
-const { email, password } = req.body;
+export const loginValidator = (req, res, next) => {
+    const { email, password } = req.body;
 
-if (!email || !password) {
-    return res.status(400).json({ message: "Email and password required" });
-}
+    if (!email || !password) {
+        return res.status(400).json({ message: "Email and password required" });
+    }
 
-next();
+    // Validate email format
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+        return res.status(400).json({ message: "Invalid email format" });
+    }
+
+    next();
 };
